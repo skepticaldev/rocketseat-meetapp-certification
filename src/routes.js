@@ -7,7 +7,6 @@ import SessionController from './app/controllers/SessionController';
 import FileController from './app/controllers/FileController';
 import MeetupController from './app/controllers/MeetupController';
 import authMiddleware from './app/middlewares/auth';
-import Meetup from './app/models/Meetup';
 
 const routes = new Router();
 const upload = multer(multerConfig);
