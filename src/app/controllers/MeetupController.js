@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { parseISO, startOfDay, endOfDay } from 'date-fns';
+import { isBefore, parseISO, startOfDay, endOfDay } from 'date-fns';
 import { Op } from 'sequelize';
 import File from '../models/File';
 import User from '../models/User';
@@ -47,6 +47,10 @@ class MeetupController {
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
+    }
+
+    if (isBefore(parseISO(req.body.date), new Date())) {
+      return res.status(400).json({ error: 'Invalid date' });
     }
 
     const user_id = req.userId;
