@@ -93,6 +93,28 @@ class MeetupController {
 
     return res.json(meetup);
   }
+
+  async delete(req, res) {
+    const meetup = await Meetup.findByPk(req.params.id);
+
+    if (!meetup) {
+      return res.status(400).json({ error: 'Meetup not found' });
+    }
+
+    const user_id = req.userId;
+
+    if (user_id !== meetup.user_id) {
+      return res.status(401).json({ error: 'Not authorized' });
+    }
+
+    if (meetup.past) {
+      return res.status(400).json({ error: 'Meetup already happens' });
+    }
+
+    await meetup.destroy();
+
+    return res.send();
+  }
 }
 
 export default new MeetupController();
