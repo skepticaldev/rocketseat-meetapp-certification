@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
+import Mail from '../../lib/Mail';
 
 class SubscriptionController {
   async index(req, res) {
@@ -66,6 +67,12 @@ class SubscriptionController {
     const subscription = await Subscription.create({
       user_id: user.id,
       meetup_id: meetup.id,
+    });
+
+    await Mail.sendMail({
+      to: `${meetup.User.dataValues.name} <${meetup.User.dataValues.email}>`,
+      subject: 'Nova inscricao',
+      text: 'Voce tem uma nova inscricao',
     });
 
     return res.json(subscription);
