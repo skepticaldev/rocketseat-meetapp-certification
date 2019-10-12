@@ -1,5 +1,4 @@
 export default {
-  // meetapprocketseatfinalchallenge
-  secret: '805d7485540d0a7c87cf174fb4cca3ec',
+  secret: process.env.APP_SECRET,
   expiresIn: '7d',
 };
