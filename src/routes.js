@@ -34,7 +34,7 @@ routes.post('/files', upload.single('file'), FileController.store);
 // Meetups routes
 routes.post('/meetups', MeetupController.store);
 routes.get('/meetups', MeetupController.index);
-routes.put('/meetups', MeetupController.update);
+routes.put('/meetups/:id', MeetupController.update);
 routes.delete('/meetups/:id', MeetupController.delete);
 
 // Schedule routes
