@@ -1,9 +1,32 @@
-import React from 'react';
-
-import api from '~/services/api';
-// import { Container } from './styles';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Container, Content, Button } from './styles';
+import Meetup from '~/components/Meetup';
+import { loadScheduleRequest } from '~/store/modules/schedule/actions';
 
 export default function Dashboard() {
-  api.get('meetups');
-  return <div>Dashboard</div>;
+  const dispatch = useDispatch();
+  const schedule = useSelector(state => state.schedule.meetups);
+
+  useEffect(() => {
+    dispatch(loadScheduleRequest());
+  }, [dispatch]);
+
+  return (
+    <Container>
+      <Content>
+        <header>
+          <h1>Meus meetups</h1>
+          <Button type="button" to="/manage">
+            <span>Novo meetup</span>
+          </Button>
+        </header>
+        <ul>
+          {schedule.map(meetup => (
+            <Meetup key={meetup.id} data={meetup} />
+          ))}
+        </ul>
+      </Content>
+    </Container>
+  );
 }
