@@ -10,7 +10,7 @@ import logo from '~/assets/logo.svg';
 
 const schema = Yup.object().shape({
   email: Yup.string()
-    .email('Insira um e-mail valido')
+    .email('Insira um e-mail válido')
     .required('O e-mail e obrigatorio'),
   password: Yup.string().required('A senha e obrigatoria'),
 });
