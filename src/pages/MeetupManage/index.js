@@ -9,7 +9,7 @@ import BannerInput from './BannerInput';
 import { handleScheduleEventRequest } from '~/store/modules/schedule/actions';
 
 export default function MeetupManage(props) {
-  const { meetup } = props.location.state || {};
+  const meetup = props.location.state || {};
   const dispatch = useDispatch();
 
   function handleSubmit({ banner, title, description, date, location }) {

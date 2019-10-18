@@ -7,6 +7,8 @@ import {
   loadScheduleSuccess,
   loadScheduleFailure,
   handleScheduleEventSuccess,
+  cancelScheduleEventSuccess,
+  cancelScheduleEventFailure,
 } from './actions';
 
 export function* loadSchedule() {
@@ -50,7 +52,25 @@ export function* handleScheduleEvent({ payload }) {
   }
 }
 
+export function* cancelScheduleEvent({ payload }) {
+  try {
+    const { id } = payload;
+
+    yield call(api.delete, `meetups/${id}`);
+
+    yield put(cancelScheduleEventSuccess());
+
+    history.push('/dashboard');
+
+    toast.success('Meetup cancelado com sucesso!');
+  } catch (err) {
+    toast.error('Houve um problema com o cancelamento!');
+    yield put(cancelScheduleEventFailure());
+  }
+}
+
 export default all([
   takeLatest('@schedule/LOAD_SCHEDULE_REQUEST', loadSchedule),
   takeLatest('@schedule/HANDLE_SCHEDULE_EVENT_REQUEST', handleScheduleEvent),
+  takeLatest('@schedule/CANCEL_SCHEDULE_EVENT_REQUEST', cancelScheduleEvent),
 ]);

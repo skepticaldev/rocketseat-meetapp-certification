@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
-import { MdAddCircleOutline, MdAddCircle } from 'react-icons/md';
+import { MdAddCircleOutline } from 'react-icons/md';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
 

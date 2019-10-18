@@ -42,3 +42,22 @@ export function handleScheduleEventFailure() {
     type: '@schedule/HANDLE_SCHEDULE_EVENT_FAILURE',
   };
 }
+
+export function cancelScheduleEventRequest(id) {
+  return {
+    type: '@schedule/CANCEL_SCHEDULE_EVENT_REQUEST',
+    payload: { id },
+  };
+}
+
+export function cancelScheduleEventSuccess() {
+  return {
+    type: '@schedule/CANCEL_SCHEDULE_EVENT_SUCCESS',
+  };
+}
+
+export function cancelScheduleEventFailure() {
+  return {
+    type: '@schedule/CANCEL_SCHEDULE_EVENT_FAILURE',
+  };
+}
