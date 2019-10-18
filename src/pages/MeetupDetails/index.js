@@ -69,3 +69,9 @@ export default function MeetupDetails({ location: { state } }) {
     </Content>
   );
 }
+
+MeetupDetails.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.object.isRequired,
+  }).isRequired,
+};

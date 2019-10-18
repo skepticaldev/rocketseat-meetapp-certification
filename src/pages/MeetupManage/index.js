@@ -16,8 +16,9 @@ const schema = Yup.object().shape({
   location: Yup.string().required('A localização é obrigatória!'),
   banner: Yup.number().required('É necessário uma imagem para o meetup!'),
 });
-export default function MeetupManage(props) {
-  const meetup = props.location.state || {};
+
+export default function MeetupManage({ location: { state } }) {
+  const meetup = state || {};
   const dispatch = useDispatch();
 
   function handleSubmit({ banner, title, description, date, location }) {
@@ -49,3 +50,9 @@ export default function MeetupManage(props) {
     </Content>
   );
 }
+
+MeetupManage.propTypes = {
+  location: PropTypes.shape({
+    state: PropTypes.object,
+  }).isRequired,
+};
