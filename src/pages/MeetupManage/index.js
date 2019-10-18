@@ -3,11 +3,19 @@ import { Form, Input } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
 import { MdAddCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
+import * as Yup from 'yup';
 import { Content, SubmitButton } from './styles';
 import DatePicker from '~/components/DatePicker';
 import BannerInput from './BannerInput';
 import { handleScheduleEventRequest } from '~/store/modules/schedule/actions';
 
+const schema = Yup.object().shape({
+  title: Yup.string().required('O título é obrigatório!'),
+  description: Yup.string().required('A descrição é obrigatória!'),
+  date: Yup.date().required('A data e é obrigatória!'),
+  location: Yup.string().required('A localização é obrigatória!'),
+  banner: Yup.number().required('É necessário uma imagem para o meetup!'),
+});
 export default function MeetupManage(props) {
   const meetup = props.location.state || {};
   const dispatch = useDispatch();
@@ -27,7 +35,7 @@ export default function MeetupManage(props) {
 
   return (
     <Content>
-      <Form initialData={meetup} onSubmit={handleSubmit}>
+      <Form schema={schema} initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="banner" />
         <Input name="title" placeholder="Título do Meetup" />
         <Input multiline name="description" placeholder="Descrição completa" />
