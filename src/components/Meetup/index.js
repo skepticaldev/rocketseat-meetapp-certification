@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
+import { MdChevronRight } from 'react-icons/md';
 import PropTypes from 'prop-types';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
@@ -17,7 +18,10 @@ export default function Meetup({ data }) {
     <Link to={{ pathname: '/details', state: { meetup: data } }}>
       <MeetupItem>
         <strong>{data.title}</strong>
-        <span>{dateParsed}</span>
+        <div>
+          <span>{dateParsed}</span>
+          <MdChevronRight size={24} color="#fff" />
+        </div>
       </MeetupItem>
     </Link>
   );

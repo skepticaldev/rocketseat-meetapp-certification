@@ -1,8 +1,9 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
+import { MdAddCircleOutline } from 'react-icons/md';
 import PropTypes from 'prop-types';
-import { Content } from './styles';
+import { Content, SubmitButton } from './styles';
 import DatePicker from '~/components/DatePicker';
 import BannerInput from './BannerInput';
 import { handleScheduleEventRequest } from '~/store/modules/schedule/actions';
@@ -29,12 +30,13 @@ export default function MeetupManage(props) {
       <Form initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="banner" />
         <Input name="title" placeholder="Título do Meetup" />
-        <Input name="description" placeholder="Descrição completa" />
+        <Input multiline name="description" placeholder="Descrição completa" />
         <DatePicker name="date" />
         <Input name="location" placeholder="Localização" />
-        <button type="submit" onSubmit={handleSubmit}>
-          Salvar perfil
-        </button>
+        <SubmitButton type="submit" onSubmit={handleSubmit}>
+          <MdAddCircleOutline size={22} />
+          <span>Salvar meetup</span>
+        </SubmitButton>
       </Form>
     </Content>
   );

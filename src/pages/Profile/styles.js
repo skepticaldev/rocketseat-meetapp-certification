@@ -38,7 +38,10 @@ export const Content = styled.div`
     }
 
     button {
-      margin: 5px 0 0;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      justify-content: center;
       height: 42px;
       width: 162px;
       background: #f94d6a;
@@ -52,6 +55,11 @@ export const Content = styled.div`
 
       &:hover {
         background: ${darken(0.08, '#f94d6a')};
+      }
+
+      span {
+        color: #fff;
+        margin: 0 0 0 10px;
       }
     }
 

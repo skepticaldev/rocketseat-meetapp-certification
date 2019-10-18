@@ -15,9 +15,16 @@ export const MeetupItem = styled.li`
     color: #fff;
   }
 
-  span {
-    font-size: 16px;
-    color: #fff;
-    opacity: 0.6;
+  div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    span {
+      font-size: 16px;
+      color: #fff;
+      opacity: 0.6;
+      margin-right: 10px;
+    }
   }
 `;

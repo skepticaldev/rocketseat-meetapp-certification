@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import { darken } from 'polished';
 
-export const Container = styled.div`
-  padding: 0 30px;
-`;
-
 export const Content = styled.div`
   max-width: 940px;
   margin: 50px auto;
@@ -14,7 +10,9 @@ export const Content = styled.div`
     flex-direction: column;
     margin-top: 30px;
 
-    input {
+    input,
+    textarea {
+      width: 100%;
       background: rgba(0, 0, 0, 0.2);
       border: 0;
       border-radius: 4px;
@@ -26,6 +24,14 @@ export const Content = styled.div`
       &::placeholder {
         color: rgba(255, 255, 255, 0.7);
       }
+    }
+
+    textarea {
+      font-size: 16;
+      height: 150px;
+      line-height: 21px;
+      resize: none;
+      padding-top: 10px;
     }
 
     hr {
@@ -45,5 +51,29 @@ export const Content = styled.div`
         opacity: 1;
       }
     }
+  }
+`;
+
+export const SubmitButton = styled.button`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 4px;
+  width: 180px;
+  height: 42px;
+  background: #f94d6a;
+  font-weight: bold;
+  color: #fff;
+  align-self: flex-end;
+  font-size: 16px;
+
+  &:hover {
+    background: ${darken(0.08, '#f94d6a')};
+  }
+
+  span {
+    margin-left: 10px;
   }
 `;

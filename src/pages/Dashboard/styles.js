@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import { darken } from 'polished';
 import { Link } from 'react-router-dom';
 
-export const Container = styled.div`
-  padding: 0 30px;
-`;
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,10 +30,14 @@ export const Button = styled(Link)`
   color: #fff;
   font-weight: bold;
   font-size: 16px;
-  padding: 0 38px;
+  padding: 0 32px;
   text-align: center;
 
   &:hover {
     background: ${darken(0.08, '#f94d6a')};
+  }
+
+  span {
+    margin-left: 10px;
   }
 `;
