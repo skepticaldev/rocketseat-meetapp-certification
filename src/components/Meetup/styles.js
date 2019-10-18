@@ -10,6 +10,10 @@ export const MeetupItem = styled.li`
   border-radius: 4px;
   margin-top: 10px;
 
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
   strong {
     font-size: 18px;
     color: #fff;
