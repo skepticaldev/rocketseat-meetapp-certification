@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Container } from './styles';
+import { Content } from './styles';
 import DatePicker from '~/components/DatePicker';
 import BannerInput from './BannerInput';
 import { handleScheduleEventRequest } from '~/store/modules/schedule/actions';
@@ -25,7 +25,7 @@ export default function MeetupManage(props) {
   }
 
   return (
-    <Container>
+    <Content>
       <Form initialData={meetup} onSubmit={handleSubmit}>
         <BannerInput name="banner" />
         <Input name="title" placeholder="Título do Meetup" />
@@ -36,6 +36,6 @@ export default function MeetupManage(props) {
           Salvar perfil
         </button>
       </Form>
-    </Container>
+    </Content>
   );
 }
