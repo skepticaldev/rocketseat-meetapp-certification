@@ -23,6 +23,7 @@ class MeetupController {
       include: [
         {
           model: User,
+          as: 'user',
           attributes: ['id', 'name', 'email'],
         },
         {
@@ -93,7 +94,24 @@ class MeetupController {
 
     await meetup.update(req.body);
 
-    return res.json(meetup);
+    const {
+      id,
+      title,
+      description,
+      banner,
+      location,
+      date,
+    } = await Meetup.findByPk(req.params.id, {
+      include: [
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
+
+    return res.json({ id, title, description, banner, location, date });
   }
 
   async delete(req, res) {
