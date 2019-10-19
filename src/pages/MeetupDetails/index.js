@@ -36,16 +36,18 @@ export default function MeetupDetails({ location: { state } }) {
     <Content>
       <header>
         <strong>{meetup.title}</strong>
-        <div>
-          <Button type="button" color="#4DBAF9" onClick={handleManage}>
-            <MdCreate size={20} />
-            <span>Editar</span>
-          </Button>
-          <Button type="button" color="#D44059" onClick={handleCancel}>
-            <MdDeleteForever size={20} />
-            <span>Cancelar</span>
-          </Button>
-        </div>
+        {!meetup.past && (
+          <div>
+            <Button type="button" color="#4DBAF9" onClick={handleManage}>
+              <MdCreate size={20} />
+              <span>Editar</span>
+            </Button>
+            <Button type="button" color="#D44059" onClick={handleCancel}>
+              <MdDeleteForever size={20} />
+              <span>Cancelar</span>
+            </Button>
+          </div>
+        )}
       </header>
       <Details>
         <img src={meetup.banner.url} alt={meetup.title} />
