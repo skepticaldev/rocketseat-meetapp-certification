@@ -14,11 +14,13 @@ const schema = Yup.object().shape({
     .email('Insira um e-mail válido')
     .required('O e-mail é obrigatório!'),
   oldPassword: Yup.string(),
-  password: Yup.string()
-    .min(6, 'A senha deve conter no mínimo 6 caracteres!')
-    .when('oldPassword', (oldPassword, field) =>
-      oldPassword ? field.required('É necessário inserir a nova senha!') : field
-    ),
+  password: Yup.string().when('oldPassword', (oldPassword, field) =>
+    oldPassword
+      ? field
+          .min(6, 'A senha deve conter no mínimo 6 caracteres!')
+          .required('É necessário inserir a nova senha!')
+      : field
+  ),
   confirmPassword: Yup.string().when('password', (password, field) =>
     password
       ? field
