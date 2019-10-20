@@ -1,12 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
 import Button from '~/components/Button';
-import banner from '~/assets/bannertest.jpeg';
 
-export default function MeetupCard({ meetup, subscribed }) {
+export default function MeetupCard({ meetup }) {
+  const subscribed = useSelector(state =>
+    state.subscriptions.subs.find(s => s.meetup.id === meetup.id)
+  );
+
   function handleSubscribe() {
     console.tron.log('subscribing');
   }
@@ -14,9 +18,13 @@ export default function MeetupCard({ meetup, subscribed }) {
     console.tron.log('unsubscribing');
   }
 
+  const bannerUrl = __DEV__
+    ? meetup.banner.url.replace('localhost', '192.168.88.128')
+    : meetup.banner.url;
+
   return (
     <Container>
-      <Banner source={banner} />
+      <Banner source={{ uri: bannerUrl }} />
       <Content>
         <Title>{meetup.title}</Title>
         <Field>
