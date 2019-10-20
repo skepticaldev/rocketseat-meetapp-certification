@@ -18,6 +18,13 @@ export const UpdateProfileSuccess = '@user/UPDATE_PROFILE_SUCCESS';
 
 export const UpdateProfileFailure = '@user/UPDATE_PROFILE_FAILURE';
 
+/** Meetups action types */
+export const LoadMeetupsRequest = '@meetups/LOAD_MEETUPS_REQUEST';
+
+export const LoadMeetupsSuccess = '@meetups/LOAD_MEETUPS_SUCCESS';
+
+export const LoadMeetupsFailure = '@meetups/LOAD_MEETUPS_FAILURE';
+
 /** Subscriptions action types */
 
 export const LoadSubscriptionsRequest =

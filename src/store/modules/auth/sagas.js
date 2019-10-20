@@ -7,6 +7,9 @@ import * as Type from '~/util/constants/type';
 
 import { signInSuccess, signFailure } from './actions';
 
+import { loadSubscriptionsRequest } from '~/store/modules/subscriptions/actions';
+import { loadMeetupsRequest } from '~/store/modules/meetups/actions';
+
 export function* signIn({ payload }) {
   try {
     const { email, password } = payload;
@@ -21,7 +24,9 @@ export function* signIn({ payload }) {
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(token, user));
-
+    console.tron.log('Hello there');
+    yield put(loadSubscriptionsRequest());
+    yield put(loadMeetupsRequest());
     // history.push('/dashboard');
   } catch (err) {
     Alert.alert('Falha na autenticação', 'Verifique seus dados');

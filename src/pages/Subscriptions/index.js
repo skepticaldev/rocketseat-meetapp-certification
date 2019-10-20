@@ -1,13 +1,29 @@
 import React from 'react';
-import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
 
 import Background from '~/components/Background';
+import Header from '~/components/Header';
 
-// import { Container } from './styles';
+import { Container, List } from './styles';
+import MeetupCard from '~/components/MeetupCard';
 
 export default function Subscriptions() {
-  return <Background />;
+  const subscriptions = useSelector(state => state.subscriptions.subs);
+  return (
+    <Background>
+      <Header />
+      <Container>
+        <List
+          data={subscriptions}
+          keyExtractor={item => String(item.id)}
+          renderItem={({ item }) => (
+            <MeetupCard meetup={item.meetup} subscribed />
+          )}
+        />
+      </Container>
+    </Background>
+  );
 }
 
 Subscriptions.navigationOptions = {

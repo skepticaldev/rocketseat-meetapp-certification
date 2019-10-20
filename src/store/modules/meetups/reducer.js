@@ -2,24 +2,24 @@ import produce from 'immer';
 import * as Type from '~/util/constants/type';
 
 const INITIAL_STATE = {
-  subs: [],
+  list: [],
   loading: false,
 };
 
-export default function subscriptions(state = INITIAL_STATE, action) {
+export default function meetups(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
-      case Type.LoadSubscriptionsRequest: {
+      case Type.LoadMeetupsRequest: {
         draft.loading = true;
         break;
       }
-      case Type.LoadSubscriptionsSuccess: {
-        draft.subs = action.payload.subscriptions;
+      case Type.LoadMeetupsSuccess: {
+        draft.list = action.payload.meetups;
         draft.loading = false;
         break;
       }
-      case Type.LoadSubscriptionsFailure: {
-        draft.loading = true;
+      case Type.LoadMeetupsFailure: {
+        draft.loading = false;
         break;
       }
       default:

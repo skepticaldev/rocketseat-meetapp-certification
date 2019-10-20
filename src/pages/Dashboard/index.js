@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { format, subDays, addDays, parseISO } from 'date-fns';
+import { format, subDays, addDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
+import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import api from '~/services/api';
+import { loadMeetupsRequest } from '~/store/modules/meetups/actions';
 
 import Background from '~/components/Background';
 import Header from '~/components/Header';
@@ -12,8 +13,9 @@ import MeetupCard from '~/components/MeetupCard';
 import { Container, List, DateHeader, DateButton, DateText } from './styles';
 
 export default function Dashboard() {
+  const dispatch = useDispatch();
+  const meetups = useSelector(state => state.meetups.list);
   const [date, setDate] = useState(new Date());
-  const [meetups, setMeetups] = useState([]);
 
   const dateFormatted = useMemo(
     () => format(date, "d 'de' MMMM", { locale: pt }),
@@ -30,23 +32,11 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function loadMeetups() {
-      const response = await api.get('meetups', {
-        params: { date },
-      });
-
-      const data = response.data.map(meetup => ({
-        ...meetup,
-        formattedDate: format(
-          parseISO(meetup.date),
-          "d 'de' MMMM, 'as' HH:mm",
-          { locale: pt }
-        ),
-      }));
-
-      setMeetups(data);
+      dispatch(loadMeetupsRequest(date, 1));
     }
 
     loadMeetups();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date]);
 
   return (

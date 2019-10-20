@@ -6,7 +6,14 @@ import { Container, Banner, Content, Title, Field, TextField } from './styles';
 import Button from '~/components/Button';
 import banner from '~/assets/bannertest.jpeg';
 
-export default function MeetupCard({ meetup }) {
+export default function MeetupCard({ meetup, subscribed }) {
+  function handleSubscribe() {
+    console.tron.log('subscribing');
+  }
+  function handleUnsubscribe() {
+    console.tron.log('unsubscribing');
+  }
+
   return (
     <Container>
       <Banner source={banner} />
@@ -24,7 +31,9 @@ export default function MeetupCard({ meetup }) {
           <Icon name="person" size={16} color="#999" />
           <TextField>Organizador: {meetup.user.name}</TextField>
         </Field>
-        <Button>Realizar inscricao</Button>
+        <Button onPress={subscribed ? handleUnsubscribe : handleSubscribe}>
+          {subscribed ? 'Cancelar inscricao' : 'Realizar inscricao'}
+        </Button>
       </Content>
     </Container>
   );

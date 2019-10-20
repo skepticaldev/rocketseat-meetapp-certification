@@ -16,5 +16,8 @@ export function* loadSubscriptions() {
 }
 
 export default all([
-  takeLatest(Type.LoadSubscriptionsRequest, loadSubscriptions),
+  takeLatest(
+    [Type.LoadSubscriptionsRequest, 'persist/REHYDRATE'],
+    loadSubscriptions
+  ),
 ]);
