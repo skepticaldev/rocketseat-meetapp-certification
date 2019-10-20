@@ -20,6 +20,7 @@ class SubscriptionController {
               [Op.gt]: new Date(),
             },
           },
+          as: 'meetup',
           include: [
             { model: User, as: 'user' },
             { model: File, as: 'banner', attributes: ['id', 'path', 'url'] },
@@ -27,7 +28,7 @@ class SubscriptionController {
           required: true,
         },
       ],
-      order: [[Meetup, 'date']],
+      order: [[{ model: Meetup, as: 'meetup' }, 'date']],
     });
 
     return res.json(subscriptions);
