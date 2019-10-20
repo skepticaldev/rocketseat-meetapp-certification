@@ -3,6 +3,8 @@ import { all, takeLatest, call, put } from 'redux-saga/effects';
 
 import api from '~/services/api';
 
+import * as Type from '~/util/constants/type';
+
 import { signInSuccess, signFailure } from './actions';
 
 export function* signIn({ payload }) {
@@ -64,7 +66,7 @@ export function signOut() {
 
 export default all([
   takeLatest('persist/REHYDRATE', setToken),
-  takeLatest('@auth/SIGN_IN_REQUEST', signIn),
-  takeLatest('@auth/SIGN_UP_REQUEST', signUp),
-  takeLatest('@auth/SIGN_OUT', signOut),
+  takeLatest(Type.SignInRequest, signIn),
+  takeLatest(Type.SignUpRequest, signUp),
+  takeLatest(Type.SignOut, signOut),
 ]);

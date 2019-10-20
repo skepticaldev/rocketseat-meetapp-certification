@@ -1,19 +1,21 @@
+import * as Type from '~/util/constants/type';
+
 export function updateProfileRequest(data) {
   return {
-    type: '@user/UPDATE_PROFILE_REQUEST',
+    type: Type.UpdateProfileRequest,
     payload: { data },
   };
 }
 
 export function updateProfileSuccess(profile) {
   return {
-    type: '@user/UPDATE_PROFILE_SUCCESS',
+    type: Type.UpdateProfileSuccess,
     payload: { profile },
   };
 }
 
 export function updateProfileFailure() {
   return {
-    type: '@user/UPDATE_PROFILE_FAILURE',
+    type: Type.UpdateProfileFailure,
   };
 }

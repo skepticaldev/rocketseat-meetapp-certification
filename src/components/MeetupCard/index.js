@@ -6,23 +6,23 @@ import { Container, Banner, Content, Title, Field, TextField } from './styles';
 import Button from '~/components/Button';
 import banner from '~/assets/bannertest.jpeg';
 
-export default function MeetupCard() {
+export default function MeetupCard({ meetup }) {
   return (
     <Container>
       <Banner source={banner} />
       <Content>
-        <Title>Meetup de React Native</Title>
+        <Title>{meetup.title}</Title>
         <Field>
           <Icon name="event" size={16} color="#999" />
-          <TextField>24 de Junho, as 20h</TextField>
+          <TextField>{meetup.formattedDate}</TextField>
         </Field>
         <Field>
           <Icon name="location-on" size={16} color="#999" />
-          <TextField>Rua Guilherme Gembala, 260</TextField>
+          <TextField>{meetup.location}</TextField>
         </Field>
         <Field>
           <Icon name="person" size={16} color="#999" />
-          <TextField>Organizador: Luiz Philipe</TextField>
+          <TextField>Organizador: {meetup.user.name}</TextField>
         </Field>
         <Button>Realizar inscricao</Button>
       </Content>

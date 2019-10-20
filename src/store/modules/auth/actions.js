@@ -1,32 +1,34 @@
+import * as Type from '~/util/constants/type';
+
 export function signInRequest(email, password) {
   return {
-    type: '@auth/SIGN_IN_REQUEST',
+    type: Type.SignInRequest,
     payload: { email, password },
   };
 }
 
 export function signInSuccess(token, user) {
   return {
-    type: '@auth/SIGN_IN_SUCCESS',
+    type: Type.SignInSuccess,
     payload: { token, user },
   };
 }
 
 export function signUpRequest(name, email, password) {
   return {
-    type: '@auth/SIGN_UP_REQUEST',
+    type: Type.SignUpRequest,
     payload: { name, email, password },
   };
 }
 
 export function signFailure() {
   return {
-    type: '@auth/SIGN_FAILURE',
+    type: Type.SignFailure,
   };
 }
 
 export function signOut() {
   return {
-    type: '@auth/SIGN_OUT',
+    type: Type.SignOut,
   };
 }

@@ -3,6 +3,8 @@ import { all, takeLatest, call, put } from 'redux-saga/effects';
 
 import api from '~/services/api';
 
+import * as Type from '~/util/constants/type';
+
 import { updateProfileSuccess, updateProfileFailure } from './actions';
 
 export function* updateProfile({ payload }) {
@@ -25,4 +27,4 @@ export function* updateProfile({ payload }) {
   }
 }
 
-export default all([takeLatest('@user/UPDATE_PROFILE_REQUEST', updateProfile)]);
+export default all([takeLatest(Type.UpdateProfileRequest, updateProfile)]);

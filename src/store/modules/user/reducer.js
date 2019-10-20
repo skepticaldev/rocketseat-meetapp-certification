@@ -1,4 +1,5 @@
 import produce from 'immer';
+import * as Type from '~/util/constants/type';
 
 const INITIAL_STATE = {
   profile: null,
@@ -11,7 +12,7 @@ export default function user(state = INITIAL_STATE, action) {
         draft.profile = action.payload.user;
         break;
       }
-      case '@user/UPDATE_PROFILE_SUCCESS': {
+      case Type.UpdateProfileSuccess: {
         draft.profile = action.payload.profile;
         break;
       }
