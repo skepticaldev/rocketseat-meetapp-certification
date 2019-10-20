@@ -2,6 +2,7 @@ import { Op } from 'sequelize';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
+import File from '../models/File';
 import Queue from '../../lib/Queue';
 import SubscriptionMail from '../jobs/SubscriptionMail';
 
@@ -19,6 +20,10 @@ class SubscriptionController {
               [Op.gt]: new Date(),
             },
           },
+          include: [
+            { model: User, as: 'user' },
+            { model: File, as: 'banner', attributes: ['id', 'path', 'url'] },
+          ],
           required: true,
         },
       ],
