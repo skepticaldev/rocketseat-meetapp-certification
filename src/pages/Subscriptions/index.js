@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useSelector, useDispatch } from 'react-redux';
+import { withNavigationFocus } from 'react-navigation';
 
 import Background from '~/components/Background';
 import Header from '~/components/Header';
@@ -10,7 +11,7 @@ import MeetupCard from '~/components/MeetupCard';
 
 import { loadSubscriptionsRequest } from '~/store/modules/subscriptions/actions';
 
-export default function Subscriptions() {
+function Subscriptions({ isFocused }) {
   const dispatch = useDispatch();
   const subscriptions = useSelector(state => state.subscriptions.subs);
 
@@ -20,7 +21,7 @@ export default function Subscriptions() {
     }
 
     loadSubs();
-  }, [dispatch]);
+  }, [dispatch, isFocused]);
 
   return (
     <Background>
@@ -42,3 +43,5 @@ Subscriptions.navigationOptions = {
     <Icon name="local-offer" size={22} color={tintColor} />
   ),
 };
+
+export default withNavigationFocus(Subscriptions);

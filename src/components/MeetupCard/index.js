@@ -13,6 +13,9 @@ import Button from '~/components/Button';
 export default function MeetupCard({ meetup }) {
   const dispatch = useDispatch();
   const loading = useSelector(state => state.subscriptions.loading);
+  const userId = useSelector(state => state.user.profile.id);
+
+  console.tron.log(userId);
 
   function handleSubscription() {
     dispatch(
@@ -44,7 +47,7 @@ export default function MeetupCard({ meetup }) {
           <Icon name="person" size={16} color="#999" />
           <TextField>Organizador: {meetup.user.name}</TextField>
         </Field>
-        {!meetup.past && (
+        {!meetup.past && !(meetup.user_id === userId) && (
           <Button onPress={handleSubscription} loading={loading === meetup.id}>
             {meetup.subscribed ? 'Cancelar inscricao' : 'Realiza inscricao'}
           </Button>
