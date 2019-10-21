@@ -45,16 +45,14 @@ class MeetupController {
         {
           model: Meetup,
           as: 'meetup',
-          where: {
-            date: {
-              [Op.gt]: new Date(),
-            },
-          },
+          where,
           required: true,
         },
       ],
     });
 
+    // Maybe not the best solution but I don't have much time
+    // For now will work great
     const meetupList = meetups.map(meetup => ({
       ...meetup.toJSON(),
       subscribed: !!userSubs.find(sub => sub.meetup_id === meetup.id),
