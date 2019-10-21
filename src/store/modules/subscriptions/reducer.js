@@ -44,6 +44,10 @@ export default function subscriptions(state = INITIAL_STATE, action) {
         break;
       }
       case Type.HandleSubscriptionSuccess: {
+        const subIndex = draft.subs.findIndex(
+          sub => action.payload.id === sub.meetup_id
+        );
+        draft.subs.splice(subIndex, 1);
         draft.loading = false;
         break;
       }

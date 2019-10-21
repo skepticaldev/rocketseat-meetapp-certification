@@ -27,11 +27,11 @@ export default function meetups(state = INITIAL_STATE, action) {
       }
       case Type.HandleSubscriptionSuccess: {
         draft.list = draft.list.map(({ subscribed, id, ...rest }) =>
-          action.payload.subscription.meetup_id === id
+          action.payload.id === id
             ? {
                 ...rest,
                 id,
-                subscribed: true,
+                subscribed: action.payload.intent === Type.Subscribe,
               }
             : {
                 ...rest,

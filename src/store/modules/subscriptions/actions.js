@@ -26,10 +26,10 @@ export function handleSubscriptionRequest(id, intent) {
   };
 }
 
-export function handleSubscriptionSuccess(subscription) {
+export function handleSubscriptionSuccess(id, intent) {
   return {
     type: Type.HandleSubscriptionSuccess,
-    payload: { subscription },
+    payload: { id, intent },
   };
 }
 

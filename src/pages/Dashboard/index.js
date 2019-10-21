@@ -3,6 +3,7 @@ import { format, subDays, addDays } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { withNavigationFocus } from 'react-navigation';
 
 import { loadMeetupsRequest } from '~/store/modules/meetups/actions';
 import { handleSubscriptionRequest } from '~/store/modules/subscriptions/actions';
@@ -14,10 +15,9 @@ import MeetupCard from '~/components/MeetupCard';
 
 import { Container, List, DateHeader, DateButton, DateText } from './styles';
 
-export default function Dashboard() {
+function Dashboard({ isFocused }) {
   const dispatch = useDispatch();
   const meetups = useSelector(state => state.meetups.list);
-  console.tron.log(meetups);
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
@@ -39,7 +39,7 @@ export default function Dashboard() {
     }
 
     loadMeetups();
-  }, [date, dispatch]);
+  }, [date, dispatch, isFocused]);
 
   function handleSubscription(id, intent) {
     dispatch(handleSubscriptionRequest(id, intent));
@@ -70,9 +70,6 @@ export default function Dashboard() {
                   item.subscribed ? Type.Unsubscribe : Type.Subscribe
                 )
               }
-              label={
-                item.subscribed ? 'Cancelar inscricao' : 'Realizar iniscricao'
-              }
             />
           )}
         />
@@ -87,3 +84,5 @@ Dashboard.navigationOptions = {
     <Icon name="format-list-bulleted" size={22} color={tintColor} />
   ),
 };
+
+export default withNavigationFocus(Dashboard);

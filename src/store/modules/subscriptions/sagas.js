@@ -1,6 +1,4 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
-import { format, parseISO } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import api from '~/services/api';
 
 import * as Type from '~/util/constants/type';
@@ -29,12 +27,12 @@ export function* handleSubscription({ payload }) {
     // in MeetupCard component the subscribed const say what
     // action need to be done
 
-    const response = yield call(
+    yield call(
       intent === Type.Subscribe ? api.post : api.delete,
       `meetup/${id}/subscriptions`
     );
 
-    yield put(handleSubscriptionSuccess(response.data));
+    yield put(handleSubscriptionSuccess(id, intent));
   } catch (err) {
     yield put(handleSubscriptionFailure());
   }
