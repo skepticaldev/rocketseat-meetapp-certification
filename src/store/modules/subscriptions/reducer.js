@@ -1,4 +1,6 @@
 import produce from 'immer';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 import * as Type from '~/util/constants/type';
 
 const INITIAL_STATE = {
@@ -14,7 +16,22 @@ export default function subscriptions(state = INITIAL_STATE, action) {
         break;
       }
       case Type.LoadSubscriptionsSuccess: {
-        draft.subs = action.payload.subscriptions;
+        draft.subs = action.payload.subscriptions.map(
+          ({ meetup, ...rest }) => ({
+            ...rest,
+            meetup: {
+              ...meetup,
+              formattedDate: format(
+                parseISO(meetup.date),
+                "d 'de' MMMM, 'as' HH:mm",
+                {
+                  locale: pt,
+                }
+              ),
+              subscribed: true,
+            },
+          })
+        );
         draft.loading = false;
         break;
       }

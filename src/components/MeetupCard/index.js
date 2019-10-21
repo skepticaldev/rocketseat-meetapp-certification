@@ -8,7 +8,7 @@ import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
 import Button from '~/components/Button';
 
-export default function MeetupCard({ meetup, handleSubscription, label }) {
+export default function MeetupCard({ meetup, handleSubscription }) {
   const loading = useSelector(state => state.subscriptions.loading);
 
   console.tron.log(loading);
@@ -36,7 +36,7 @@ export default function MeetupCard({ meetup, handleSubscription, label }) {
         </Field>
         {!meetup.past && (
           <Button onPress={handleSubscription} loading={loading === meetup.id}>
-            {label}
+            {meetup.subscribed ? 'Cancelar inscricao' : 'Realiza inscricao'}
           </Button>
         )}
       </Content>

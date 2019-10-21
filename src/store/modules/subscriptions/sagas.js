@@ -15,24 +15,7 @@ export function* loadSubscriptions() {
   try {
     const response = yield call(api.get, 'subscriptions');
 
-    const data = response.data.map(({ id, meetup_id, user_id, meetup }) => ({
-      id,
-      meetup_id,
-      user_id,
-      meetup: {
-        ...meetup,
-        formattedDate: format(
-          parseISO(meetup.date),
-          "d 'de' MMMM, 'as' HH:mm",
-          {
-            locale: pt,
-          }
-        ),
-        subscribed: true,
-      },
-    }));
-
-    yield put(loadSubscriptionsSuccess(data));
+    yield put(loadSubscriptionsSuccess(response.data));
   } catch (err) {
     yield put(loadSubscriptionsFailure());
   }
