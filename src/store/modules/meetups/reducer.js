@@ -22,6 +22,25 @@ export default function meetups(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
+      case Type.HandleSubscriptionRequest: {
+        break;
+      }
+      case Type.HandleSubscriptionSuccess: {
+        draft.list = draft.list.map(({ subscribed, id, ...rest }) =>
+          action.payload.subscription.meetup_id === id
+            ? {
+                ...rest,
+                id,
+                subscribed: true,
+              }
+            : {
+                ...rest,
+                id,
+                subscribed,
+              }
+        );
+        break;
+      }
       default:
     }
   });

@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { loadMeetupsRequest } from '~/store/modules/meetups/actions';
+import { handleSubscriptionRequest } from '~/store/modules/subscriptions/actions';
+import * as Type from '~/util/constants/type';
 
 import Background from '~/components/Background';
 import Header from '~/components/Header';
@@ -15,6 +17,7 @@ import { Container, List, DateHeader, DateButton, DateText } from './styles';
 export default function Dashboard() {
   const dispatch = useDispatch();
   const meetups = useSelector(state => state.meetups.list);
+  console.tron.log(meetups);
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
@@ -36,8 +39,11 @@ export default function Dashboard() {
     }
 
     loadMeetups();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [date]);
+  }, [date, dispatch]);
+
+  function handleSubscription(id, intent) {
+    dispatch(handleSubscriptionRequest(id, intent));
+  }
 
   return (
     <Background>
@@ -55,7 +61,20 @@ export default function Dashboard() {
         <List
           data={meetups}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <MeetupCard meetup={item} />}
+          renderItem={({ item }) => (
+            <MeetupCard
+              meetup={item}
+              handleSubscription={() =>
+                handleSubscription(
+                  item.id,
+                  item.subscribed ? Type.Unsubscribe : Type.Subscribe
+                )
+              }
+              label={
+                item.subscribed ? 'Cancelar inscricao' : 'Realizar iniscricao'
+              }
+            />
+          )}
         />
       </Container>
     </Background>

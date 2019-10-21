@@ -1,25 +1,13 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
 import Button from '~/components/Button';
 
-export default function MeetupCard({ meetup }) {
-  const subscribed = useSelector(state =>
-    state.subscriptions.subs.find(s => s.meetup.id === meetup.id)
-  );
-
-  function handleSubscribe() {
-    console.tron.log('subscribing');
-  }
-  function handleUnsubscribe() {
-    console.tron.log('unsubscribing');
-  }
-
+export default function MeetupCard({ meetup, handleSubscription, label }) {
   const bannerUrl = __DEV__
-    ? meetup.banner.url.replace('localhost', '192.168.88.128')
+    ? meetup.banner.url.replace('localhost', '192.168.43.194')
     : meetup.banner.url;
 
   return (
@@ -39,9 +27,7 @@ export default function MeetupCard({ meetup }) {
           <Icon name="person" size={16} color="#999" />
           <TextField>Organizador: {meetup.user.name}</TextField>
         </Field>
-        <Button onPress={subscribed ? handleUnsubscribe : handleSubscribe}>
-          {subscribed ? 'Cancelar inscricao' : 'Realizar inscricao'}
-        </Button>
+        {!meetup.past && <Button onPress={handleSubscription}>{label}</Button>}
       </Content>
     </Container>
   );

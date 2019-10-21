@@ -18,3 +18,23 @@ export function loadSubscriptionsFailure() {
     type: Type.LoadSubscriptionsFailure,
   };
 }
+
+export function handleSubscriptionRequest(meetupId, intent) {
+  return {
+    type: Type.HandleSubscriptionRequest,
+    payload: { meetupId, intent },
+  };
+}
+
+export function handleSubscriptionSuccess(subscription) {
+  return {
+    type: Type.HandleSubscriptionSuccess,
+    payload: { subscription },
+  };
+}
+
+export function handleSubscriptionFailure() {
+  return {
+    type: Type.HandleSubscriptionFailure,
+  };
+}

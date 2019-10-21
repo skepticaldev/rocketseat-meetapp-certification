@@ -35,3 +35,17 @@ export const LoadSubscriptionsSuccess =
 
 export const LoadSubscriptionsFailure =
   '@subscriptions/LOAD_SUBSCRIPTIONS_FAILURE';
+
+export const HandleSubscriptionRequest =
+  '@subscriptions/HANDLE_SUBSCRIPTION_REQUEST';
+
+export const HandleSubscriptionSuccess =
+  '@subscriptions/HANDLE_SUBSCRIPTION_SUCCESS';
+
+export const HandleSubscriptionFailure =
+  '@subscriptions/HANDLE_SUBSCRIPTION_FAILURE';
+
+// Use as button intent action
+export const Subscribe = '@subscriptions/SUBSCRIBE';
+
+export const Unsubscribe = '@subscriptions/UNSUBSCRIBE';

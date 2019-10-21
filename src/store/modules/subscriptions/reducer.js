@@ -19,7 +19,19 @@ export default function subscriptions(state = INITIAL_STATE, action) {
         break;
       }
       case Type.LoadSubscriptionsFailure: {
+        draft.loading = false;
+        break;
+      }
+      case Type.HandleSubscriptionRequest: {
         draft.loading = true;
+        break;
+      }
+      case Type.HandleSubscriptionSuccess: {
+        draft.loading = false;
+        break;
+      }
+      case Type.HandleSubscriptionFailure: {
+        draft.loading = false;
         break;
       }
       default:
