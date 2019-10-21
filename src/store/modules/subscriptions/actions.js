@@ -19,10 +19,10 @@ export function loadSubscriptionsFailure() {
   };
 }
 
-export function handleSubscriptionRequest(meetupId, intent) {
+export function handleSubscriptionRequest(id, intent) {
   return {
     type: Type.HandleSubscriptionRequest,
-    payload: { meetupId, intent },
+    payload: { id, intent },
   };
 }
 

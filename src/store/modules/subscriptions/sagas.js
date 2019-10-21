@@ -40,7 +40,7 @@ export function* loadSubscriptions() {
 
 export function* handleSubscription({ payload }) {
   try {
-    const { meetupId, intent } = payload;
+    const { id, intent } = payload;
 
     // Clarifying: intent is passing to determine the action.
     // in MeetupCard component the subscribed const say what
@@ -48,7 +48,7 @@ export function* handleSubscription({ payload }) {
 
     const response = yield call(
       intent === Type.Subscribe ? api.post : api.delete,
-      `meetup/${meetupId}/subscriptions`
+      `meetup/${id}/subscriptions`
     );
 
     yield put(handleSubscriptionSuccess(response.data));

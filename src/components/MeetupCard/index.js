@@ -1,13 +1,20 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useSelector } from 'react-redux';
+
+import { physicalDevice, local } from '~/util/constants/address';
 
 import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
 import Button from '~/components/Button';
 
 export default function MeetupCard({ meetup, handleSubscription, label }) {
+  const loading = useSelector(state => state.subscriptions.loading);
+
+  console.tron.log(loading);
+
   const bannerUrl = __DEV__
-    ? meetup.banner.url.replace('localhost', '192.168.43.194')
+    ? meetup.banner.url.replace(local, physicalDevice)
     : meetup.banner.url;
 
   return (
@@ -27,7 +34,11 @@ export default function MeetupCard({ meetup, handleSubscription, label }) {
           <Icon name="person" size={16} color="#999" />
           <TextField>Organizador: {meetup.user.name}</TextField>
         </Field>
-        {!meetup.past && <Button onPress={handleSubscription}>{label}</Button>}
+        {!meetup.past && (
+          <Button onPress={handleSubscription} loading={loading === meetup.id}>
+            {label}
+          </Button>
+        )}
       </Content>
     </Container>
   );

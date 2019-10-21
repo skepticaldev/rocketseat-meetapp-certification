@@ -23,7 +23,7 @@ export default function subscriptions(state = INITIAL_STATE, action) {
         break;
       }
       case Type.HandleSubscriptionRequest: {
-        draft.loading = true;
+        draft.loading = action.payload.id;
         break;
       }
       case Type.HandleSubscriptionSuccess: {
