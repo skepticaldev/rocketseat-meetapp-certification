@@ -7,10 +7,10 @@ export function loadMeetupsRequest(date, page = 1) {
   };
 }
 
-export function loadMeetupsSuccess(meetups) {
+export function loadMeetupsSuccess(meetups, page) {
   return {
     type: Type.LoadMeetupsSuccess,
-    payload: { meetups },
+    payload: { meetups, page },
   };
 }
 

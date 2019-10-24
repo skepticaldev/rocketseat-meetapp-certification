@@ -4,6 +4,7 @@ import * as Type from '~/util/constants/type';
 const INITIAL_STATE = {
   list: [],
   loading: false,
+  page: 1,
 };
 
 export default function meetups(state = INITIAL_STATE, action) {
@@ -14,7 +15,11 @@ export default function meetups(state = INITIAL_STATE, action) {
         break;
       }
       case Type.LoadMeetupsSuccess: {
-        draft.list = action.payload.meetups;
+        draft.list =
+          action.payload.page >= 2
+            ? [...draft.list, ...action.payload.meetups]
+            : action.payload.meetups;
+        draft.page = action.payload.page;
         draft.loading = false;
         break;
       }

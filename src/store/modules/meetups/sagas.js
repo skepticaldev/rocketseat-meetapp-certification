@@ -1,4 +1,4 @@
-import { all, takeLatest, call, put, select } from 'redux-saga/effects';
+import { all, takeLatest, call, put } from 'redux-saga/effects';
 import { parseISO, format } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
@@ -18,17 +18,14 @@ export function* loadMeetups({ payload: { date, page } }) {
       params: { date, page },
     });
 
-    const subscriptions = yield select(state => state.subscriptions.subs);
-
     const data = response.data.map(meetup => ({
       ...meetup,
       formattedDate: format(parseISO(meetup.date), "d 'de' MMMM, 'as' HH:mm", {
         locale: pt,
       }),
-      subscribed: subscriptions.some(sub => sub.meetup_id === meetup.id),
     }));
 
-    yield put(loadMeetupsSuccess(data));
+    yield put(loadMeetupsSuccess(data, page));
   } catch (err) {
     yield put(loadMeetupsFailure());
   }

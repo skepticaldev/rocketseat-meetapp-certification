@@ -18,6 +18,7 @@ import { Container, List, DateHeader, DateButton, DateText } from './styles';
 function Dashboard({ isFocused }) {
   const dispatch = useDispatch();
   const meetups = useSelector(state => state.meetups.list);
+  const page = useSelector(state => state.meetups.page);
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
@@ -33,13 +34,15 @@ function Dashboard({ isFocused }) {
     setDate(addDays(date, 1));
   }
 
-  useEffect(() => {
-    async function loadMeetups() {
-      dispatch(loadMeetupsRequest(date, 1));
-    }
+  function loadMore() {
+    const nextPage = page + 1;
+    dispatch(loadMeetupsRequest(date, nextPage));
+  }
 
-    loadMeetups();
-  }, [date, dispatch, isFocused]);
+  useEffect(() => {
+    dispatch(loadMeetupsRequest(date, 1));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [date, isFocused]);
 
   function handleSubscription(id, intent) {
     dispatch(handleSubscriptionRequest(id, intent));
@@ -61,6 +64,8 @@ function Dashboard({ isFocused }) {
         <List
           data={meetups}
           keyExtractor={item => String(item.id)}
+          onEndReachedThreshold={0.2}
+          onEndReached={loadMore}
           renderItem={({ item }) => (
             <MeetupCard
               meetup={item}
