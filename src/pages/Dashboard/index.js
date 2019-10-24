@@ -7,7 +7,6 @@ import { withNavigationFocus } from 'react-navigation';
 
 import { loadMeetupsRequest } from '~/store/modules/meetups/actions';
 import { handleSubscriptionRequest } from '~/store/modules/subscriptions/actions';
-import * as Type from '~/util/constants/type';
 
 import Background from '~/components/Background';
 import Header from '~/components/Header';
@@ -19,6 +18,9 @@ function Dashboard({ isFocused }) {
   const dispatch = useDispatch();
   const meetups = useSelector(state => state.meetups.list);
   const page = useSelector(state => state.meetups.page);
+  const userId = useSelector(state => state.user.profile.id);
+  const loading = useSelector(state => state.subscriptions.loading);
+
   const [date, setDate] = useState(new Date());
 
   const dateFormatted = useMemo(
@@ -44,8 +46,8 @@ function Dashboard({ isFocused }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [date, isFocused]);
 
-  function handleSubscription(id, intent) {
-    dispatch(handleSubscriptionRequest(id, intent));
+  function handleSubscription(id, subscribed) {
+    dispatch(handleSubscriptionRequest(id, subscribed));
   }
 
   return (
@@ -69,11 +71,10 @@ function Dashboard({ isFocused }) {
           renderItem={({ item }) => (
             <MeetupCard
               meetup={item}
+              isOwner={item.user_id === userId}
+              loading={loading}
               handleSubscription={() =>
-                handleSubscription(
-                  item.id,
-                  item.subscribed ? Type.Unsubscribe : Type.Subscribe
-                )
+                handleSubscription(item.id, item.subscribed)
               }
             />
           )}

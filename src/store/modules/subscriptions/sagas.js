@@ -21,18 +21,14 @@ export function* loadSubscriptions() {
 
 export function* handleSubscription({ payload }) {
   try {
-    const { id, intent } = payload;
-
-    // Clarifying: intent is passing to determine the action.
-    // in MeetupCard component the subscribed const say what
-    // action need to be done
+    const { id, subscribed } = payload;
 
     yield call(
-      intent === Type.Subscribe ? api.post : api.delete,
+      subscribed ? api.delete : api.post,
       `meetup/${id}/subscriptions`
     );
 
-    yield put(handleSubscriptionSuccess(id, intent));
+    yield put(handleSubscriptionSuccess(id, !subscribed));
   } catch (err) {
     yield put(handleSubscriptionFailure());
   }

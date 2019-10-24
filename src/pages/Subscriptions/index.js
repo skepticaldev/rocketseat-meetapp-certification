@@ -9,11 +9,15 @@ import Header from '~/components/Header';
 import { Container, List } from './styles';
 import MeetupCard from '~/components/MeetupCard';
 
-import { loadSubscriptionsRequest } from '~/store/modules/subscriptions/actions';
+import {
+  loadSubscriptionsRequest,
+  handleSubscriptionRequest,
+} from '~/store/modules/subscriptions/actions';
 
 function Subscriptions({ isFocused }) {
   const dispatch = useDispatch();
   const subscriptions = useSelector(state => state.subscriptions.subs);
+  const loading = useSelector(state => state.subscriptions.loading);
 
   useEffect(() => {
     async function loadSubs() {
@@ -23,6 +27,10 @@ function Subscriptions({ isFocused }) {
     loadSubs();
   }, [dispatch, isFocused]);
 
+  function handleSubscription(id, subscribed) {
+    dispatch(handleSubscriptionRequest(id, subscribed));
+  }
+
   return (
     <Background>
       <Header />
@@ -30,7 +38,15 @@ function Subscriptions({ isFocused }) {
         <List
           data={subscriptions}
           keyExtractor={item => String(item.id)}
-          renderItem={({ item }) => <MeetupCard meetup={item.meetup} />}
+          renderItem={({ item }) => (
+            <MeetupCard
+              meetup={item.meetup}
+              loading={loading}
+              handleSubscription={() =>
+                handleSubscription(item.meetup_id, true)
+              }
+            />
+          )}
         />
       </Container>
     </Background>

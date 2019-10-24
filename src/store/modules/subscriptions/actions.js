@@ -19,17 +19,17 @@ export function loadSubscriptionsFailure() {
   };
 }
 
-export function handleSubscriptionRequest(id, intent) {
+export function handleSubscriptionRequest(id, subscribed) {
   return {
     type: Type.HandleSubscriptionRequest,
-    payload: { id, intent },
+    payload: { id, subscribed },
   };
 }
 
-export function handleSubscriptionSuccess(id, intent) {
+export function handleSubscriptionSuccess(id, subscribed) {
   return {
     type: Type.HandleSubscriptionSuccess,
-    payload: { id, intent },
+    payload: { id, subscribed },
   };
 }
 

@@ -36,7 +36,7 @@ export default function meetups(state = INITIAL_STATE, action) {
             ? {
                 ...rest,
                 id,
-                subscribed: action.payload.intent === Type.Subscribe,
+                subscribed: action.payload.subscribed,
               }
             : {
                 ...rest,

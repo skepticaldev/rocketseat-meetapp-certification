@@ -1,31 +1,18 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { physicalDevice, local } from '~/util/constants/address';
-import * as Type from '~/util/constants/type';
-import { handleSubscriptionRequest } from '~/store/modules/subscriptions/actions';
 
 import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
 import Button from '~/components/Button';
 
-export default function MeetupCard({ meetup }) {
-  const dispatch = useDispatch();
-  const loading = useSelector(state => state.subscriptions.loading);
-  const userId = useSelector(state => state.user.profile.id);
-
-  const isOwner = meetup.user_id === userId;
-
-  function handleSubscription() {
-    dispatch(
-      handleSubscriptionRequest(
-        meetup.id,
-        meetup.subscribed ? Type.Unsubscribe : Type.Subscribe
-      )
-    );
-  }
-
+export default function MeetupCard({
+  meetup,
+  isOwner,
+  loading,
+  handleSubscription,
+}) {
   const bannerUrl = __DEV__
     ? meetup.banner.url.replace(local, physicalDevice)
     : meetup.banner.url;
