@@ -1,4 +1,4 @@
-export const physicalDevice = '192.168.43.194';
+export const myAddress = '192.168.43.194';
 
 export const local = 'localhost';
 
