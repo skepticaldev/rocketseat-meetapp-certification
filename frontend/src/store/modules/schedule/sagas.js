@@ -17,9 +17,7 @@ export function* loadSchedule() {
 
     yield put(loadScheduleSuccess(response.data));
   } catch (err) {
-    toast.error(
-      'Erro ao carregar meetups, verifique sua conexao com a internet'
-    );
+    toast.error('Erro ao carregar meetups!');
     yield put(loadScheduleFailure());
   }
 }
