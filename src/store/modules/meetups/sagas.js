@@ -4,6 +4,8 @@ import pt from 'date-fns/locale/pt';
 
 import api from '~/services/api';
 
+import { showSnackbar } from '~/util/Snackbar';
+
 import * as Type from '~/util/constants/type';
 
 import { loadMeetupsSuccess, loadMeetupsFailure } from './actions';
@@ -24,8 +26,10 @@ export function* loadMeetups({ payload: { date, page } }) {
         locale: pt,
       }),
     }));
+
     yield put(loadMeetupsSuccess(data, page));
   } catch (err) {
+    showSnackbar('Houve um problema ao carregar seus meetups', 'error');
     yield put(loadMeetupsFailure());
   }
 }

@@ -1,6 +1,8 @@
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 import api from '~/services/api';
 
+import { showSnackbar } from '~/util/Snackbar';
+
 import * as Type from '~/util/constants/type';
 import {
   loadSubscriptionsSuccess,
@@ -15,6 +17,7 @@ export function* loadSubscriptions() {
 
     yield put(loadSubscriptionsSuccess(response.data));
   } catch (err) {
+    showSnackbar('Houve um problema ao carregar suas inscrições!', 'error');
     yield put(loadSubscriptionsFailure());
   }
 }
@@ -28,8 +31,12 @@ export function* handleSubscription({ payload }) {
       `meetup/${id}/subscriptions`
     );
 
+    showSnackbar(
+      subscribed ? 'Inscrição removida com sucesso!' : 'Inscrito com successo!'
+    );
     yield put(handleSubscriptionSuccess(id, !subscribed));
   } catch (err) {
+    showSnackbar('Houve um problema na sua inscrição!', 'error');
     yield put(handleSubscriptionFailure());
   }
 }
