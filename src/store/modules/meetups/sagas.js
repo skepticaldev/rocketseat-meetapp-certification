@@ -24,7 +24,6 @@ export function* loadMeetups({ payload: { date, page } }) {
         locale: pt,
       }),
     }));
-
     yield put(loadMeetupsSuccess(data, page));
   } catch (err) {
     yield put(loadMeetupsFailure());

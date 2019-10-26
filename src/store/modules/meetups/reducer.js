@@ -11,6 +11,7 @@ export default function meetups(state = INITIAL_STATE, action) {
   return produce(state, draft => {
     switch (action.type) {
       case Type.LoadMeetupsRequest: {
+        draft.list = action.payload.page === 1 ? [] : draft.list;
         draft.loading = true;
         break;
       }

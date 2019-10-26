@@ -23,3 +23,20 @@ export const DateText = styled.Text`
   color: #fff;
   font-weight: bold;
 `;
+
+export const LoadingView = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyList = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyText = styled.Text`
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+`;

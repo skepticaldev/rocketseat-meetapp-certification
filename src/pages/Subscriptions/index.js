@@ -43,7 +43,7 @@ function Subscriptions({ isFocused }) {
               meetup={item.meetup}
               loading={loading}
               handleSubscription={() =>
-                handleSubscription(item.meetup_id, true)
+                handleSubscription(item.meetup_id, item.meetup.subscribed)
               }
             />
           )}
