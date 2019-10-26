@@ -77,10 +77,10 @@ class SubscriptionController {
       meetup_id: meetup.id,
     });
 
-    // await Queue.add(SubscriptionMail.key, {
-    //   meetup,
-    //   user,
-    // });
+    await Queue.add(SubscriptionMail.key, {
+      meetup,
+      user,
+    });
 
     return res.json(subscription);
   }
