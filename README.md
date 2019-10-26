@@ -80,7 +80,7 @@ $ git clone https://github.com/skepticaldev/rocketseat-meetapp-certification.git
 $ cd backend
 
 # Run following command to install dependencies
-$ yarn install
+$ yarn
 
 # Create a Docker container with postgres
 $ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
@@ -89,7 +89,7 @@ $ docker run --name database -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgre
 $ docker run --name redismeetapp -p 6379:6379 -d -t redis:alpine
 
 # Apply migrations
-$ yarn migrate
+$ yarn sequelize db:migrate
 
 # Run the server
 $ yarn dev
@@ -104,7 +104,7 @@ To test email feature you need to change the .env config to your variables.
 $ cd frontend
 
 # Run following command to install dependeencies
-$ yarn install
+$ yarn
 
 # Run the application
 $ yarn start
@@ -119,7 +119,7 @@ This application was configured to android only. You need a physical device or a
 $ cd mobile
 
 # Run following command to install dependeencies
-$ yarn install
+$ yarn
 
 # Change myAddress variable name acording your ip address
 $ src>util>constants>address.js
