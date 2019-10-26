@@ -1,7 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import { physicalDevice, local } from '~/util/constants/address';
+import { local, myAddress } from '~/util/constants/address';
 
 import { Container, Banner, Content, Title, Field, TextField } from './styles';
 
@@ -14,7 +14,7 @@ export default function MeetupCard({
   handleSubscription,
 }) {
   const bannerUrl = __DEV__
-    ? meetup.banner.url.replace(local, physicalDevice)
+    ? meetup.banner.url.replace(local, myAddress)
     : meetup.banner.url;
 
   return (
