@@ -1,5 +1,9 @@
 <h1 align="center">Rocketseat Certification - Meetapp</h1>
 
+<p align="center">
+  <img alt="Go Stack logo" src="https://github.com/skepticaldev/rocketseat-meetapp-certification/blob/master/images/logo-gostack.png" />
+</p>  
+
 <h3 align="center">This repository represents the final challenge to Bootcamp 8.0 certification offered by Rocketseat (https://rocketseat.com.br/).</h3>
 
 <p align="center">
@@ -74,7 +78,7 @@ To use next commands and run the application you need the to set up the followin
 
 - [Yarn](https://yarnpkg.com/en/docs/getting-started)
 - [Node.js](https://nodejs.org/en/download/package-manager/)
-- [Dokcker](https://www.docker.com/products/docker-desktop)
+- [Docker](https://www.docker.com/products/docker-desktop)
 
 ## Running backend
 
