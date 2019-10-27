@@ -70,6 +70,12 @@
 -   [Sentry](https://sentry.io/)
 -   [DotEnv](https://www.npmjs.com/package/dotenv)
 
+To use next commands and run the application you need the to set up the following itens below:
+
+- [Yarn](https://yarnpkg.com/en/docs/getting-started)
+- [Node.js](https://nodejs.org/en/download/package-manager/)
+- [Dokcker](https://www.docker.com/products/docker-desktop)
+
 ## Running backend
 
 ```bash
