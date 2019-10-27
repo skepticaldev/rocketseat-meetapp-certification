@@ -33,7 +33,7 @@ export default function MeetupCard({
         <Field>
           <Icon name="person" size={16} color="#999" />
           <TextField>
-            Organizador: {isOwner ? 'Voce' : meetup.user.name}
+            Organizador: {isOwner ? 'Você' : meetup.user.name}
           </TextField>
         </Field>
         {!meetup.past && !isOwner && (
