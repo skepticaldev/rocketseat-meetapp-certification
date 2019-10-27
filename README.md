@@ -70,6 +70,12 @@
 -   [Sentry](https://sentry.io/)
 -   [DotEnv](https://www.npmjs.com/package/dotenv)
 
+To use next commands and run the application you need the to set up the following itens below:
+
+- [Yarn](https://yarnpkg.com/en/docs/getting-started)
+- [Node.js](https://nodejs.org/en/download/package-manager/)
+- [Dokcker](https://www.docker.com/products/docker-desktop)
+
 ## Running backend
 
 ```bash
@@ -97,13 +103,18 @@ $ yarn dev
 
 To test email feature you need to change the .env config to your variables.
 
+```bash
+# after change .env variables run following command to start queue process
+$ yarn queue
+```
+
 ## Running frontend
 
 ```bash
 # go to frontend folder
 $ cd frontend
 
-# Run following command to install dependeencies
+# Run following command to install dependencies
 $ yarn
 
 # Run the application
@@ -118,7 +129,7 @@ This application was configured to android only. You need a physical device or a
 # go to mobile folder
 $ cd mobile
 
-# Run following command to install dependeencies
+# Run following command to install dependencies
 $ yarn
 
 # Change myAddress variable name acording your ip address
