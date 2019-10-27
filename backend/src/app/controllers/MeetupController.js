@@ -33,7 +33,7 @@ class MeetupController {
           attributes: ['name', 'path', 'url'],
         },
       ],
-      order: [['date', 'ASC']],
+      order: [['date', 'ASC'], ['id', 'ASC']],
       limit: 10,
       offset: 10 * page - 10,
     });
