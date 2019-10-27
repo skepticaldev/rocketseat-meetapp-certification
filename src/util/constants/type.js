@@ -4,7 +4,7 @@ export const SignInRequest = '@auth/SIGN_IN_REQUEST';
 
 export const SignInSuccess = '@auth/SIGN_IN_SUCCESS';
 
-export const SignInFailure = '@auth/SIGN_IN_FAILURE';
+export const SignFailure = '@auth/SIGN_IN_FAILURE';
 
 export const SignUpRequest = '@auth/SIGN_UP_REQUEST';
 

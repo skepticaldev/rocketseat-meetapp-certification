@@ -20,7 +20,7 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.loading = false;
         break;
       }
-      case Type.SignInFailure: {
+      case Type.SignFailure: {
         draft.loading = false;
         break;
       }

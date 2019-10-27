@@ -1,9 +1,10 @@
-import { Alert } from 'react-native';
 import { all, takeLatest, call, put } from 'redux-saga/effects';
 
 import api from '~/services/api';
+import { showSnackbar } from '~/util/Snackbar';
 
 import * as Type from '~/util/constants/type';
+import * as NavigationService from '~/services/navigation';
 
 import { signInSuccess, signFailure } from './actions';
 
@@ -23,7 +24,8 @@ export function* signIn({ payload }) {
     yield put(signInSuccess(token, user));
     // history.push('/dashboard');
   } catch (err) {
-    Alert.alert('Falha na autenticação', 'Verifique seus dados');
+    showSnackbar('Falha na autenticação, verifique seus dados!');
+
     yield put(signFailure());
   }
 }
@@ -38,13 +40,11 @@ export function* signUp({ payload }) {
       password,
     });
 
-    Alert.alert(
-      'Cadastro realizado com sucesso!',
-      'Faca o login para continuar'
-    );
+    showSnackbar('Cadastro realizado com sucesso!');
+    NavigationService.navigate('SignIn');
     // history.push('/');
   } catch (err) {
-    Alert.alert('Falha no cadastro', 'verifique seus dados');
+    showSnackbar('Falha no Cadastro verifique seus dados!');
     yield put(signFailure());
   }
 }
